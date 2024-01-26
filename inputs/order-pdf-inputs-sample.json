@@ -1,0 +1,60 @@
+{
+	"connection_key": "request",
+	"result": true,
+	"redis_key": "abcdefg",
+	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+	"api_status_code": 200,
+	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+	"business_partner": 101,
+	"service_label": "FUNC_ORDER_PDF",
+	"api_type": "creates",
+	"OrdersHeaderWithItem": [
+		{
+			"OrderID": 1,
+			"OrderStatus": "FIX",
+			"OrderDate": "2024-01-10",
+			"OrderType": "OD",
+			"Buyer": 101,
+			"BuyerName": "TEST鋼材株式会社",
+			"Seller": 201,
+			"SellerName": "TEST商事株式会社",
+			"RequestedDeliveryDate": "2024-01-25",
+			"RequestedDeliveryTime": "08:00:00",
+			"TotalGrossAmount": 2423850,
+			"Contract": 1,
+			"ContractItem": 1,
+			"Project": 1,
+			"WBSElement": 1,
+			"Incoterms": "CIF",
+			"PricingDate": "2024-01-10",
+			"PaymentTerms": "0001",
+			"PaymentMethod": "T",
+			"TransactionCurrency": "JPY"
+		}
+	],
+	"OrdersItem": [
+		{
+			"OrderID": 1,
+			"OrderItem": 1,
+			"OrderStatus": "FIX",
+			"OrderItemCategory": "INVP",
+			"Product": "SM570TMC-001",
+			"ProductSpecification": "SM570TMC",
+			"SizeOrDimensionText": "11.00 X 2000.0 X 6000.0",
+			"OrderItemText": "SM570TMC-001",
+			"OrderItemTextByBuyer": "SM570TMC-001",
+			"OrderItemTextBySeller": "SM570TMC-001",
+			"OrderQuantityInBaseUnit": 1036,
+			"OrderQuantityInDeliveryUnit": 1,
+			"RequestedDeliveryDate": "2024-01-25",
+			"RequestedDeliveryTime": "08:00:00",
+			"NetAmount": 673400,
+			"TaxAmount": 67340,
+			"GrossAmount": 740740
+		}
+	],
+	"api_schema": "DPFMFuncOrderPDFGenerates",
+	"accepter": [
+		"Order"
+	]
+}
