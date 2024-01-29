@@ -7,7 +7,7 @@
 	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
 	"business_partner": 101,
 	"service_label": "FUNC_ORDER_PDF",
-	"api_type": "creates",
+	"api_type": "generates",
 	"OrdersHeaderWithItem": [
 		{
 			"OrderID": 1,
@@ -46,6 +46,8 @@
 			"OrderItemTextBySeller": "SM570TMC-001",
 			"OrderQuantityInBaseUnit": 1036,
 			"OrderQuantityInDeliveryUnit": 1,
+			"BaseUnit": "KG",
+			"DeliveryUnit": "員数",
 			"RequestedDeliveryDate": "2024-01-25",
 			"RequestedDeliveryTime": "08:00:00",
 			"NetAmount": 673400,

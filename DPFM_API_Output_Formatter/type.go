@@ -16,7 +16,7 @@ type SDC struct {
 	Deleted             bool        `json:"deleted"`
 	APIProcessingResult *bool       `json:"api_processing_result"`
 	APIProcessingError  string      `json:"api_processing_error"`
-	MillSheetPdf        string      `json:"mill_sheet_pdf"`
+	OrderPdf	        string      `json:"order_pdf"`
 }
 
 type Message struct {

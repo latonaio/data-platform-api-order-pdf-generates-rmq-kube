@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: data-platform-order-pdf-generates-rmq-kube
+    run: data-platform-api-order-pdf-generates-rmq-kube
   name: data-platform-api-order-pdf-generates-rmq-kube
 spec:
   replicas: 1
