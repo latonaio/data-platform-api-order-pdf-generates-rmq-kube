@@ -1,62 +1,158 @@
 {
-	"connection_key": "request",
-	"result": true,
-	"redis_key": "abcdefg",
-	"filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
-	"api_status_code": 200,
-	"runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
-	"business_partner": 101,
-	"service_label": "FUNC_ORDER_PDF",
-	"api_type": "generates",
-	"OrdersHeaderWithItem": [
-		{
-			"OrderID": 1,
-			"OrderStatus": "FIX",
-			"OrderDate": "2024-01-10",
-			"OrderType": "OD",
-			"Buyer": 101,
-			"BuyerName": "TEST鋼材株式会社",
-			"Seller": 201,
-			"SellerName": "TEST商事株式会社",
-			"RequestedDeliveryDate": "2024-01-25",
-			"RequestedDeliveryTime": "08:00:00",
-			"TotalGrossAmount": 2423850,
-			"Contract": 1,
-			"ContractItem": 1,
-			"Project": 1,
-			"WBSElement": 1,
-			"Incoterms": "CIF",
-			"PricingDate": "2024-01-10",
-			"PaymentTerms": "0001",
-			"PaymentMethod": "T",
-			"TransactionCurrency": "JPY"
-		}
-	],
-	"OrdersItem": [
-		{
-			"OrderID": 1,
-			"OrderItem": 1,
-			"OrderStatus": "FIX",
-			"OrderItemCategory": "INVP",
-			"Product": "SM570TMC-001",
-			"ProductSpecification": "SM570TMC",
-			"SizeOrDimensionText": "11.00 X 2000.0 X 6000.0",
-			"OrderItemText": "SM570TMC-001",
-			"OrderItemTextByBuyer": "SM570TMC-001",
-			"OrderItemTextBySeller": "SM570TMC-001",
-			"OrderQuantityInBaseUnit": 1036,
-			"OrderQuantityInDeliveryUnit": 1,
-			"BaseUnit": "KG",
-			"DeliveryUnit": "員数",
-			"RequestedDeliveryDate": "2024-01-25",
-			"RequestedDeliveryTime": "08:00:00",
-			"NetAmount": 673400,
-			"TaxAmount": 67340,
-			"GrossAmount": 740740
-		}
-	],
-	"api_schema": "DPFMFuncOrderPDFGenerates",
-	"accepter": [
-		"Order"
-	]
+  "connection_key": "request",
+  "result": true,
+  "redis_key": "abcdefg",
+  "filepath": "/var/lib/aion/Data/rededge_sdc/abcdef.json",
+  "api_status_code": 200,
+  "runtime_session_id": "boi9ar543dg91ipdnspi099u231280ab0v8af0ew",
+  "business_partner": 101,
+  "service_label": "FUNC_ORDER_PDF",
+  "api_type": "generates",
+  "HeaderWithItem": [
+    {
+      "OrderID": 8010601,
+      "OrderStatus": "FIX",
+      "OrderDate": "2024-01-10",
+      "OrderType": "OD",
+      "Buyer": 101,
+      "BuyerName": "TEST鋼材株式会社",
+      "Seller": 201,
+      "SellerName": "TEST商事株式会社",
+      "RequestedDeliveryDate": "2024-01-25",
+      "RequestedDeliveryTime": "08:00:00",
+      "TotalGrossAmount": 2423850,
+      "Contract": 1,
+      "ContractItem": 1,
+      "Project": 1,
+      "ProjectDescription": "TESTプロジェクト",
+      "WBSElement": 1,
+      "WBSElementResponsiblePersonName": "TEST担当者",
+      "Incoterms": "EXW",
+      "IncotermsName": "工場渡し",
+      "PricingDate": "2024-01-10",
+      "PaymentTerms": "0001",
+      "PaymentTermsName": "月末締め翌月末払い",
+      "PaymentMethod": "T",
+      "TransactionCurrency": "JPY",
+      "HeaderText": "Test"
+    }
+  ],
+  "Item": [
+    {
+      "OrderID": 8010601,
+      "OrderItem": 1,
+      "OrderStatus": "FIX",
+      "DeliverToPlant": "TE99",
+      "DeliverToPlantName": "さいたま工場",
+      "DeliverFromPlant": "TE99",
+      "DeliverFromPlantName": "川崎工場",
+      "OrderItemCategory": "INVP",
+      "Product": "SM570TMC-001",
+      "ProductSpecification": "SM570TMC",
+      "SizeOrDimensionText": "11.00 X 2000.0 X 6000.0",
+      "OrderItemText": "SM570TMC-001",
+      "OrderItemTextByBuyer": "SM570TMC-001",
+      "OrderItemTextBySeller": "SM570TMC-001",
+      "OrderQuantityInBaseUnit": 1036,
+      "OrderQuantityInDeliveryUnit": 1,
+      "BaseUnit": "KG",
+      "DeliveryUnit": "員数",
+      "RequestedDeliveryDate": "2024-01-25",
+      "RequestedDeliveryTime": "08:00:00",
+      "NetAmount": 673400,
+      "TaxAmount": 67340,
+      "GrossAmount": 740740,
+      "ProductNetWeight": 1036
+    },
+    {
+      "OrderID": 8010601,
+      "OrderItem": 2,
+      "OrderStatus": "FIX",
+      "DeliverToPlant": "TE99",
+      "DeliverToPlantName": "さいたま工場",
+      "DeliverFromPlant": "TE99",
+      "DeliverFromPlantName": "川崎工場",
+      "OrderItemCategory": "INVP",
+      "Product": "SM570TMC-001",
+      "ProductSpecification": "SM570TMC",
+      "SizeOrDimensionText": "11.00 X 2000.0 X 6000.0",
+      "OrderItemText": "SM570TMC-001",
+      "OrderItemTextByBuyer": "SM570TMC-001",
+      "OrderItemTextBySeller": "SM570TMC-001",
+      "OrderQuantityInBaseUnit": 1036,
+      "OrderQuantityInDeliveryUnit": 1,
+      "BaseUnit": "KG",
+      "DeliveryUnit": "員数",
+      "RequestedDeliveryDate": "2024-01-25",
+      "RequestedDeliveryTime": "08:00:00",
+      "NetAmount": 673400,
+      "TaxAmount": 67340,
+      "GrossAmount": 740740,
+      "ProductNetWeight": 1036
+    }
+  ],
+  "ItemPricingElement": [
+    {
+      "OrderID": 1,
+      "OrderItem": 1,
+      "PricingProcedureCounter": 1,
+      "ConditionType": "PR00",
+      "ConditionRateValue": 6000
+    }
+  ],
+  "Partner": [
+    {
+      "OrderID": 1,
+      "PartnerFunction": "BUYER",
+      "BusinessPartner": 101,
+      "BusinessPartnerFullName": "TEST鋼材株式会社",
+      "BusinessPartnerName": "TEST鋼材株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "SELLER",
+      "BusinessPartner": 201,
+      "BusinessPartnerFullName": "TEST商事株式会社",
+      "BusinessPartnerName": "TEST商事株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "MANUFACTURER",
+      "BusinessPartner": 301,
+      "BusinessPartnerFullName": "TEST商事株式会社",
+      "BusinessPartnerName": "TEST商事株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "TRADER",
+      "BusinessPartner": 201,
+      "BusinessPartnerFullName": "TEST商事株式会社",
+      "BusinessPartnerName": "TEST商事株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "CONSUMER",
+      "BusinessPartner": 401,
+      "BusinessPartnerFullName": "TEST FAB 株式会社",
+      "BusinessPartnerName": "TEST FAB 株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "CONSUMER",
+      "BusinessPartner": 402,
+      "BusinessPartnerFullName": "TEST建設株式会社",
+      "BusinessPartnerName": "TEST建設株式会社"
+    },
+    {
+      "OrderID": 1,
+      "PartnerFunction": "CONSUMER",
+      "BusinessPartner": 403,
+      "BusinessPartnerFullName": "TEST不動産株式会社",
+      "BusinessPartnerName": "TEST不動産株式会社"
+    }
+  ],
+  "api_schema": "DPFMFuncOrderPDFGenerates",
+  "accepter": [
+    "Order"
+  ]
 }

@@ -78,7 +78,7 @@ func callProcess(rmq *rabbitmq.RabbitmqClient, caller *dpfm_api_caller.DPFMAPICa
 	var errs []error
 
 	accepter := getAccepter(&input)
-	res, errs := caller.AsyncPDFCreates(accepter, &input, &output, l, conf)
+	res, mountPath, errs := caller.AsyncPDFCreates(accepter, &input, &output, l, conf)
 
 	//output.MillSheetPdf = generatePdf(string(input.MillCertData.Data))
 
@@ -95,6 +95,7 @@ func callProcess(rmq *rabbitmq.RabbitmqClient, caller *dpfm_api_caller.DPFMAPICa
 	}
 	output.APIProcessingResult = getBoolPtr(true)
 	output.Message = res
+	output.MountPath = mountPath
 
 	l.JsonParseOut(output)
 	rmq.Send(conf.RMQ.QueueToResponse(), output)

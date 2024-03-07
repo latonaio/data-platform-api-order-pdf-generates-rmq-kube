@@ -94,13 +94,14 @@ func (c *DPFMAPICaller) AsyncPDFCreates(
 	output *dpfm_api_output_formatter.SDC,
 	log *logger.Logger,
 	conf *config.Conf,
-) (interface{}, []error) {
+) (interface{}, *string, []error) {
 	mtx := sync.Mutex{}
 	errs := make([]error, 0, 5)
 
 	var response interface{}
+	var mountPath *string
 
-	response = c.process(nil, &mtx, input, output, accepter, &errs, log, conf)
+	response, mountPath = c.process(nil, &mtx, input, output, accepter, &errs, log, conf)
 
-	return response, nil
+	return response, mountPath, nil
 }

@@ -10,8 +10,10 @@ import (
 	"github.com/latonaio/golang-logging-library-for-data-platform/logger"
 	lnpdf "github.com/latonaio/golang-pdf-library"
 	"io/ioutil"
+	"math/rand"
 	"os"
 	"sync"
+	"time"
 )
 
 func (c *DPFMAPICaller) process(
@@ -23,14 +25,15 @@ func (c *DPFMAPICaller) process(
 	errs *[]error,
 	log *logger.Logger,
 	conf *config.Conf,
-) interface{} {
+) (interface{}, *string) {
 	var header *[]dpfm_api_output_formatter.Header
+	var mountPath *string
 
 	for _, fn := range accepter {
 		switch fn {
 		case "Order":
 			func() {
-				header, _ = c.GeneratePDF(input, errs, log, conf)
+				header, mountPath, _ = c.GeneratePDF(input, errs, log, conf)
 			}()
 		}
 	}
@@ -39,7 +42,7 @@ func (c *DPFMAPICaller) process(
 		Header: *header,
 	}
 
-	return data
+	return data, mountPath
 }
 
 func (c *DPFMAPICaller) GeneratePDF(
@@ -47,25 +50,40 @@ func (c *DPFMAPICaller) GeneratePDF(
 	errs *[]error,
 	log *logger.Logger,
 	conf *config.Conf,
-) (*[]dpfm_api_output_formatter.Header, error) {
+) (*[]dpfm_api_output_formatter.Header, *string, error) {
 	var data []dpfm_api_output_formatter.Header
+
+	randomString := generateRandomString(10)
+	mountPath := ""
 
 	for _, headerData := range input.Header {
 		var err error
 
-		outputPath := fmt.Sprintf(
-			"%s/%s%s",
+		err = mkdirP(fmt.Sprintf(
+			"%s/%s",
 			conf.MountPath,
-			fmt.Sprintf("%d-%d", headerData.OrderID, headerData.OrderItem),
+			randomString,
+		))
+		if err != nil {
+			return nil, nil, err
+		}
+
+		outputPath := fmt.Sprintf(
+			"%s/%s/%s%s",
+			conf.MountPath,
+			randomString,
+			fmt.Sprintf("output"),
 			".pdf",
 		)
+
+		mountPath = outputPath
 
 		dataJsonFilePath := fmt.Sprintf("%s/%s", conf.MountPath, "data.json")
 		dataJsonFile, err := os.Create(
 			dataJsonFilePath,
 		)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		err = copyPDF(
@@ -73,7 +91,7 @@ func (c *DPFMAPICaller) GeneratePDF(
 			outputPath,
 		)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		// TODO 後でDBから取得することになりそう
@@ -81,18 +99,19 @@ func (c *DPFMAPICaller) GeneratePDF(
 
 		pdfData := *dpfm_api_output_formatter.SetToPdfData(
 			&headerData,
-			&input.Header[0],
 			input.Items,
+			input.ItemPricingElements,
+			input.Partners,
 		)
 
 		pdfDataJsonBytes, err := json.Marshal(pdfData)
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		_, err = dataJsonFile.WriteString(string(pdfDataJsonBytes))
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
 
 		lnpdf.Builder{
@@ -106,7 +125,33 @@ func (c *DPFMAPICaller) GeneratePDF(
 		)
 	}
 
-	return &data, nil
+	return &data, &mountPath, nil
+}
+
+func generateRandomString(length int) string {
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+	rand.Seed(time.Now().UnixNano())
+
+	result := make([]byte, length)
+	for i := range result {
+		result[i] = charset[rand.Intn(len(charset))]
+	}
+	return string(result)
+}
+
+func mkdirP(dirPath string) error {
+	_, err := os.Stat(dirPath)
+	if os.IsNotExist(err) {
+		err = os.MkdirAll(dirPath, 0755)
+		if err != nil {
+			return err
+		}
+	} else if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func copyPDF(srcPath, destPath string) error {
